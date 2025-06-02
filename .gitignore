@@ -1,0 +1,8 @@
+node_modules/
+dist/
+allure-results/
+allure-report/
+.env
+*.log
+*.csv
+*.xlsx 

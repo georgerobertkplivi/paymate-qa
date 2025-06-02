@@ -1,0 +1,72 @@
+# Runs automated tests on push to main and pull requests
+name: QA Automation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Runs all tests in test environment
+  test-test-env:
+    name: Test Environment
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run UI Tests
+        run: ./scripts/run_test.sh All TEST_ENV
+        env:
+          API_BASE_URL: "https://test-api.paymate.com"
+      - name: Run API Tests
+        run: ./scripts/run_test.sh Cleanup TEST_ENV
+        env:
+          API_BASE_URL: "https://test-api.paymate.com"
+      - name: Generate Allure Report
+        run: npx allure generate --clean ./allure-results
+      - name: Upload Allure Report Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-test-env
+          path: allure-report
+
+  # Runs all tests in staging environment after test env passes
+  test-staging-env:
+    name: Staging Environment
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: test-test-env
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run UI Tests
+        run: ./scripts/run_test.sh All STAGING_ENV
+        env:
+          API_BASE_URL: "https://staging-api.paymate.com"
+      - name: Run API Tests
+        run: ./scripts/run_test.sh Cleanup STAGING_ENV
+        env:
+          API_BASE_URL: "https://staging-api.paymate.com"
+      - name: Generate Allure Report
+        run: npx allure generate --clean ./allure-results
+      - name: Upload Allure Report Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-staging-env
+          path: allure-report 
