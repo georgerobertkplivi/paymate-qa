@@ -141,6 +141,7 @@ results/performance_STAGING_20240321_123456.json
 See `.github/workflows/qa.yml` for GitHub Actions integration.
 
 ## Test Cases
-- See `test-cases.csv` for test case documentation.
+- See [Manual Test Cases](docs/manual-test-cases.md) for detailed test case documentation.
+- See [Bug Reports](docs/bug-reports.md) for bug reporting template and examples.
 
 --- 
