@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { TRANSACTION_HISTORY_LOCATORS } from '../constants/locators';
+import { ENDPOINTS } from '../constants/endpoints';
 
 export class TransactionHistoryPage {
   readonly page: Page;
@@ -23,7 +24,7 @@ export class TransactionHistoryPage {
   }
 
   async goto() {
-    await this.page.goto('/transactions');
+    await this.page.goto(ENDPOINTS.TRANSACTIONS);
   }
 
   async filterByDateRange(startDate: string, endDate: string) {

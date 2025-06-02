@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { REGISTRATION_LOCATORS } from '../constants/locators';
+import { ENDPOINTS } from '../constants/endpoints';
 
 interface UserData {
   email: string;
@@ -41,7 +42,7 @@ export class RegistrationPage {
   }
 
   async goto() {
-    await this.page.goto('/register');
+    await this.page.goto(ENDPOINTS.REGISTER);
   }
 
   async register(userData: UserData) {

@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { DASHBOARD_LOCATORS } from '../constants/locators';
+import { ENDPOINTS } from '../constants/endpoints';
 
 export class DashboardPage {
   readonly page: Page;
@@ -53,7 +54,7 @@ export class DashboardPage {
   }
 
   async goto() {
-    await this.page.goto('/dashboard');
+    await this.page.goto(ENDPOINTS.DASHBOARD);
   }
 
   async getBalance(): Promise<string> {

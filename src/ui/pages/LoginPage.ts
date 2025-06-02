@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { LOGIN_LOCATORS } from '../constants/locators';
+import { ENDPOINTS } from '../constants/endpoints';
 
 export class LoginPage {
   readonly page: Page;
@@ -35,7 +36,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('/login');
+    await this.page.goto(ENDPOINTS.LOGIN);
   }
 
   async login(email: string, password: string, rememberMe?: boolean) {
