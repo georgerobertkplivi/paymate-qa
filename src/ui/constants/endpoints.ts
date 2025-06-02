@@ -1,3 +1,5 @@
+const API_BASE_URL = 'https://api.paymate-simulated.com';
+
 export const ENDPOINTS = {
   DASHBOARD: '/dashboard',
   LOGIN: '/login',
@@ -17,19 +19,19 @@ export const ENDPOINTS = {
   PAYMENT_METHODS: '/payment-methods',
   CURRENCY_SETTINGS: '/currency-settings',
   API: {
-    LOGIN: '/api/auth/login',
-    REGISTER: '/api/auth/register',
-    LOGOUT: '/api/auth/logout',
-    RESET_PASSWORD: '/api/auth/reset-password',
-    VERIFY_EMAIL: '/api/auth/verify-email',
-    SEND_MONEY: '/api/transactions/send',
-    REQUEST_MONEY: '/api/transactions/request',
-    TRANSACTIONS: '/api/transactions',
-    PROFILE: '/api/user/profile',
-    SETTINGS: '/api/user/settings',
-    NOTIFICATIONS: '/api/notifications',
-    EXPORT: '/api/export',
-    CURRENCIES: '/api/currencies',
-    PAYMENT_METHODS: '/api/payment-methods'
+    LOGIN: `${API_BASE_URL}/api/auth/login`,
+    REGISTER: `${API_BASE_URL}/api/auth/register`,
+    LOGOUT: `${API_BASE_URL}/api/auth/logout`,
+    RESET_PASSWORD: `${API_BASE_URL}/api/auth/reset-password`,
+    VERIFY_EMAIL: `${API_BASE_URL}/api/auth/verify-email`,
+    SEND_MONEY: `${API_BASE_URL}/api/transactions/send`,
+    REQUEST_MONEY: `${API_BASE_URL}/api/transactions/request`,
+    TRANSACTIONS: `${API_BASE_URL}/api/transactions`,
+    PROFILE: `${API_BASE_URL}/api/user/profile`,
+    SETTINGS: `${API_BASE_URL}/api/user/settings`,
+    NOTIFICATIONS: `${API_BASE_URL}/api/notifications`,
+    EXPORT: `${API_BASE_URL}/api/export`,
+    CURRENCIES: `${API_BASE_URL}/api/currencies`,
+    PAYMENT_METHODS: `${API_BASE_URL}/api/payment-methods`
   }
 }; 
