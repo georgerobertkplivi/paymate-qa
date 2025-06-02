@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { LOGIN_LOCATORS } from '../constants/locators';
 
 export class LoginPage {
   readonly page: Page;
@@ -18,19 +19,19 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email"]');
-    this.passwordInput = page.locator('[data-testid="password"]');
-    this.rememberMeCheckbox = page.locator('[data-testid="remember-me"]');
-    this.loginButton = page.locator('[data-testid="login-button"]');
-    this.forgotPasswordLink = page.locator('[data-testid="forgot-password"]');
-    this.resetEmailInput = page.locator('[data-testid="reset-email"]');
-    this.resetSubmitButton = page.locator('[data-testid="reset-submit"]');
-    this.dashboard = page.locator('.dashboard');
-    this.errorMessage = page.locator('[data-testid="error-message"]');
-    this.resetSuccess = page.locator('[data-testid="reset-success"]');
-    this.accountLocked = page.locator('[data-testid="account-locked"]');
-    this.emailError = page.locator('[data-testid="email-error"]');
-    this.sessionExpired = page.locator('[data-testid="session-expired"]');
+    this.emailInput = page.locator(LOGIN_LOCATORS.EMAIL);
+    this.passwordInput = page.locator(LOGIN_LOCATORS.PASSWORD);
+    this.rememberMeCheckbox = page.locator(LOGIN_LOCATORS.REMEMBER_ME);
+    this.loginButton = page.locator(LOGIN_LOCATORS.LOGIN_BUTTON);
+    this.forgotPasswordLink = page.locator(LOGIN_LOCATORS.FORGOT_PASSWORD);
+    this.resetEmailInput = page.locator(LOGIN_LOCATORS.RESET_EMAIL);
+    this.resetSubmitButton = page.locator(LOGIN_LOCATORS.RESET_SUBMIT);
+    this.dashboard = page.locator(LOGIN_LOCATORS.DASHBOARD);
+    this.errorMessage = page.locator(LOGIN_LOCATORS.ERROR_MESSAGE);
+    this.resetSuccess = page.locator(LOGIN_LOCATORS.RESET_SUCCESS);
+    this.accountLocked = page.locator(LOGIN_LOCATORS.ACCOUNT_LOCKED);
+    this.emailError = page.locator(LOGIN_LOCATORS.EMAIL_ERROR);
+    this.sessionExpired = page.locator(LOGIN_LOCATORS.SESSION_EXPIRED);
   }
 
   async goto() {

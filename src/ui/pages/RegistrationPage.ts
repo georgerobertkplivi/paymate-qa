@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { REGISTRATION_LOCATORS } from '../constants/locators';
 
 interface UserData {
   email: string;
@@ -25,18 +26,18 @@ export class RegistrationPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.emailInput = page.locator('[data-testid="email"]');
-    this.passwordInput = page.locator('[data-testid="password"]');
-    this.firstNameInput = page.locator('[data-testid="firstName"]');
-    this.lastNameInput = page.locator('[data-testid="lastName"]');
-    this.phoneInput = page.locator('[data-testid="phone"]');
-    this.registerButton = page.locator('[data-testid="register-button"]');
-    this.registrationSuccess = page.locator('[data-testid="registration-success"]');
-    this.validationError = page.locator('[data-testid="validation-error"]');
-    this.passwordStrengthError = page.locator('[data-testid="password-strength-error"]');
-    this.emailExistsError = page.locator('[data-testid="email-exists-error"]');
-    this.phoneError = page.locator('[data-testid="phone-error"]');
-    this.concurrentRegistrationError = page.locator('[data-testid="concurrent-registration-error"]');
+    this.emailInput = page.locator(REGISTRATION_LOCATORS.EMAIL);
+    this.passwordInput = page.locator(REGISTRATION_LOCATORS.PASSWORD);
+    this.firstNameInput = page.locator(REGISTRATION_LOCATORS.FIRST_NAME);
+    this.lastNameInput = page.locator(REGISTRATION_LOCATORS.LAST_NAME);
+    this.phoneInput = page.locator(REGISTRATION_LOCATORS.PHONE);
+    this.registerButton = page.locator(REGISTRATION_LOCATORS.REGISTER_BUTTON);
+    this.registrationSuccess = page.locator(REGISTRATION_LOCATORS.REGISTRATION_SUCCESS);
+    this.validationError = page.locator(REGISTRATION_LOCATORS.VALIDATION_ERROR);
+    this.passwordStrengthError = page.locator(REGISTRATION_LOCATORS.PASSWORD_STRENGTH_ERROR);
+    this.emailExistsError = page.locator(REGISTRATION_LOCATORS.EMAIL_EXISTS_ERROR);
+    this.phoneError = page.locator(REGISTRATION_LOCATORS.PHONE_ERROR);
+    this.concurrentRegistrationError = page.locator(REGISTRATION_LOCATORS.CONCURRENT_REGISTRATION_ERROR);
   }
 
   async goto() {

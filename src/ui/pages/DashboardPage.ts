@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { DASHBOARD_LOCATORS } from '../constants/locators';
 
 export class DashboardPage {
   readonly page: Page;
@@ -27,28 +28,28 @@ export class DashboardPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.balanceAmount = page.locator('[data-testid="balance-amount"]');
-    this.sendMoneyButton = page.locator('[data-testid="send-money-button"]');
-    this.requestMoneyButton = page.locator('[data-testid="request-money-button"]');
-    this.recentTransactionsList = page.locator('[data-testid="recent-transactions"]');
-    this.quickActionsMenu = page.locator('[data-testid="quick-actions-menu"]');
-    this.notificationsBell = page.locator('[data-testid="notifications-bell"]');
-    this.profileMenu = page.locator('[data-testid="profile-menu"]');
-    this.transactionList = page.locator('[data-testid="transaction-list"]');
-    this.transactionItem = page.locator('[data-testid="transaction-item"]');
-    this.filteredResults = page.locator('[data-testid="filtered-results"]');
-    this.resetFiltersButton = page.locator('[data-testid="reset-filters"]');
-    this.deleteTransactionButton = page.locator('[data-testid="delete-transaction"]');
-    this.confirmDeleteButton = page.locator('[data-testid="confirm-delete"]');
-    this.deleteSuccessMessage = page.locator('[data-testid="delete-success"]');
-    this.successMessage = page.locator('[data-testid="success-message"]');
-    this.errorMessage = page.locator('[data-testid="error-message"]');
-    this.scheduleSuccessMessage = page.locator('[data-testid="schedule-success"]');
-    this.nextPageButton = page.locator('[data-testid="next-page"]');
-    this.pageIndicator = page.locator('[data-testid="page-2"]');
-    this.exportButton = page.locator('[data-testid="export-button"]');
-    this.confirmExportButton = page.locator('[data-testid="confirm-export"]');
-    this.activeFilters = page.locator('[data-testid="active-filters"]');
+    this.balanceAmount = page.locator(DASHBOARD_LOCATORS.BALANCE_AMOUNT);
+    this.sendMoneyButton = page.locator(DASHBOARD_LOCATORS.SEND_MONEY_BUTTON);
+    this.requestMoneyButton = page.locator(DASHBOARD_LOCATORS.REQUEST_MONEY_BUTTON);
+    this.recentTransactionsList = page.locator(DASHBOARD_LOCATORS.RECENT_TRANSACTIONS);
+    this.quickActionsMenu = page.locator(DASHBOARD_LOCATORS.QUICK_ACTIONS_MENU);
+    this.notificationsBell = page.locator(DASHBOARD_LOCATORS.NOTIFICATIONS_BELL);
+    this.profileMenu = page.locator(DASHBOARD_LOCATORS.PROFILE_MENU);
+    this.transactionList = page.locator(DASHBOARD_LOCATORS.TRANSACTION_LIST);
+    this.transactionItem = page.locator(DASHBOARD_LOCATORS.TRANSACTION_ITEM);
+    this.filteredResults = page.locator(DASHBOARD_LOCATORS.FILTERED_RESULTS);
+    this.resetFiltersButton = page.locator(DASHBOARD_LOCATORS.RESET_FILTERS);
+    this.deleteTransactionButton = page.locator(DASHBOARD_LOCATORS.DELETE_TRANSACTION);
+    this.confirmDeleteButton = page.locator(DASHBOARD_LOCATORS.CONFIRM_DELETE);
+    this.deleteSuccessMessage = page.locator(DASHBOARD_LOCATORS.DELETE_SUCCESS);
+    this.successMessage = page.locator(DASHBOARD_LOCATORS.SUCCESS_MESSAGE);
+    this.errorMessage = page.locator(DASHBOARD_LOCATORS.ERROR_MESSAGE);
+    this.scheduleSuccessMessage = page.locator(DASHBOARD_LOCATORS.SCHEDULE_SUCCESS);
+    this.nextPageButton = page.locator(DASHBOARD_LOCATORS.NEXT_PAGE);
+    this.pageIndicator = page.locator(DASHBOARD_LOCATORS.PAGE_INDICATOR);
+    this.exportButton = page.locator(DASHBOARD_LOCATORS.EXPORT_BUTTON);
+    this.confirmExportButton = page.locator(DASHBOARD_LOCATORS.CONFIRM_EXPORT);
+    this.activeFilters = page.locator(DASHBOARD_LOCATORS.ACTIVE_FILTERS);
   }
 
   async goto() {
@@ -61,37 +62,37 @@ export class DashboardPage {
 
   async sendMoney(amount: string, recipient: string, note?: string, currency?: string, scheduleDate?: Date) {
     await this.sendMoneyButton.click();
-    await this.page.locator('[data-testid="amount-input"]').fill(amount);
-    await this.page.locator('[data-testid="recipient-input"]').fill(recipient);
+    await this.page.locator(DASHBOARD_LOCATORS.AMOUNT_INPUT).fill(amount);
+    await this.page.locator(DASHBOARD_LOCATORS.RECIPIENT_INPUT).fill(recipient);
     if (note) {
-      await this.page.locator('[data-testid="note-input"]').fill(note);
+      await this.page.locator(DASHBOARD_LOCATORS.NOTE_INPUT).fill(note);
     }
     if (currency) {
-      await this.page.locator('[data-testid="currency-select"]').selectOption(currency);
+      await this.page.locator(DASHBOARD_LOCATORS.CURRENCY_SELECT).selectOption(currency);
     }
     if (scheduleDate) {
-      await this.page.locator('[data-testid="schedule-date"]').fill(scheduleDate.toISOString().split('T')[0]);
+      await this.page.locator(DASHBOARD_LOCATORS.SCHEDULE_DATE).fill(scheduleDate.toISOString().split('T')[0]);
     }
-    await this.page.locator('[data-testid="send-money-submit"]').click();
+    await this.page.locator(DASHBOARD_LOCATORS.SEND_MONEY_SUBMIT).click();
   }
 
   async requestMoney(amount: string, requester: string, note?: string) {
     await this.requestMoneyButton.click();
-    await this.page.locator('[data-testid="amount-input"]').fill(amount);
-    await this.page.locator('[data-testid="requester-input"]').fill(requester);
+    await this.page.locator(DASHBOARD_LOCATORS.AMOUNT_INPUT).fill(amount);
+    await this.page.locator(DASHBOARD_LOCATORS.REQUESTER_INPUT).fill(requester);
     if (note) {
-      await this.page.locator('[data-testid="note-input"]').fill(note);
+      await this.page.locator(DASHBOARD_LOCATORS.NOTE_INPUT).fill(note);
     }
-    await this.page.locator('[data-testid="request-money-submit"]').click();
+    await this.page.locator(DASHBOARD_LOCATORS.REQUEST_MONEY_SUBMIT).click();
   }
 
   async viewTransactionHistory() {
-    await this.page.locator('[data-testid="view-all-transactions"]').click();
+    await this.page.locator(DASHBOARD_LOCATORS.VIEW_ALL_TRANSACTIONS).click();
   }
 
   async checkNotifications() {
     await this.notificationsBell.click();
-    return await this.page.locator('[data-testid="notifications-list"]').isVisible();
+    return await this.page.locator(DASHBOARD_LOCATORS.NOTIFICATIONS_LIST).isVisible();
   }
 
   async openProfileMenu() {
@@ -100,22 +101,22 @@ export class DashboardPage {
 
   async isQuickActionAvailable(action: string): Promise<boolean> {
     await this.quickActionsMenu.click();
-    return await this.page.locator(`[data-testid="quick-action-${action}"]`).isVisible();
+    return await this.page.locator(DASHBOARD_LOCATORS.QUICK_ACTION(action)).isVisible();
   }
 
   async filterByDateRange(startDate: Date, endDate: Date) {
-    await this.page.locator('[data-testid="start-date"]').fill(startDate.toISOString().split('T')[0]);
-    await this.page.locator('[data-testid="end-date"]').fill(endDate.toISOString().split('T')[0]);
-    await this.page.locator('[data-testid="apply-date-filter"]').click();
+    await this.page.locator(DASHBOARD_LOCATORS.START_DATE).fill(startDate.toISOString().split('T')[0]);
+    await this.page.locator(DASHBOARD_LOCATORS.END_DATE).fill(endDate.toISOString().split('T')[0]);
+    await this.page.locator(DASHBOARD_LOCATORS.APPLY_DATE_FILTER).click();
   }
 
   async filterByType(type: string) {
-    await this.page.locator('[data-testid="type-filter"]').selectOption(type);
+    await this.page.locator(DASHBOARD_LOCATORS.TYPE_FILTER).selectOption(type);
   }
 
   async searchTransactions(query: string) {
-    await this.page.locator('[data-testid="search-input"]').fill(query);
-    await this.page.locator('[data-testid="search-button"]').click();
+    await this.page.locator(DASHBOARD_LOCATORS.SEARCH_INPUT).fill(query);
+    await this.page.locator(DASHBOARD_LOCATORS.SEARCH_BUTTON).click();
   }
 
   async deleteTransaction() {
